@@ -29,7 +29,9 @@ ENV PATH /home/lit_users/.rbenv/bin:$PATH
 RUN rbenv install 2.5.1&&\
     rbenv global 2.5.1&&\
     echo 'eval "$(rbenv init -)"' >> ~/.bashrc &&\
-    . ~/.bashrc
+    echo 'eval "$(rbenv init -)"' >> ~/.profile &&\
+    . ~/.bashrc&&\
+    . ~/.profile
 
 # ------------------------------------------------------------------------------
 # Expose ports.
