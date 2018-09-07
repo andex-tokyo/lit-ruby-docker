@@ -26,12 +26,12 @@ RUN git clone https://github.com/sstephenson/rbenv.git /home/lit_users/.rbenv&&\
     git clone https://github.com/sstephenson/ruby-build.git /home/lit_users/.rbenv/plugins/ruby-build
 
 ENV PATH /home/lit_users/.rbenv/bin:$PATH
-RUN rbenv install 2.5.1&&\
-    rbenv global 2.5.1&&\
-    echo 'eval "$(rbenv init -)"' >> ~/.bashrc &&\
-    echo 'eval "$(rbenv init -)"' >> ~/.profile &&\
-    . ~/.bashrc&&\
-    . ~/.profile
+ENV RBENV_VERSION 2.5.1
+
+RUN eval "$(rbenv init -)"; rbenv install $RBENV_VERSION \
+&&  eval "$(rbenv init -)"; rbenv global $RBENV_VERSION \
+&&  echo 'eval "$(rbenv init -)"' >> ~/.bashrc \
+&&  mkdir /home/lit_users/workspace
 
 # ------------------------------------------------------------------------------
 # Expose ports.
@@ -39,8 +39,13 @@ EXPOSE 4567
 
 # ------------------------------------------------------------------------------
 # Add volumes
-RUN mkdir /home/lit_users/workspace
 VOLUME /home/lit_users/workspace
 WORKDIR /home/lit_users/workspace
+
+RUN  eval "$(rbenv init -)"; gem update --system \
+&&  eval "$(rbenv init -)"; gem install bundler -f \
+&&  eval "$(rbenv init -)"; bundle init \
+&&  eval "$(rbenv init -)"; bundle update \
+&&  rm -rf /tmp/*
 
 ENTRYPOINT ["/bin/bash"]
