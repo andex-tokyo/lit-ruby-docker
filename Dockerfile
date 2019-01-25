@@ -21,7 +21,7 @@ RUN useradd -G sudo -m -s /bin/bash lit_users&&\
 USER lit_users
 
 # ------------------------------------------------------------------------------
-# Install Ruby2.5.1
+# Install Ruby2.6.0
 RUN git clone https://github.com/sstephenson/rbenv.git /home/lit_users/.rbenv&&\
   git clone https://github.com/sstephenson/ruby-build.git /home/lit_users/.rbenv/plugins/ruby-build
 
