@@ -41,14 +41,13 @@ EXPOSE 4567
 # Add volumes
 VOLUME /home/lit_users/workspace
 WORKDIR /home/lit_users/workspace
-COPY Gemfile /home/lit_users/workspace
-COPY Gemfile.lock /home/lit_users/workspace
+ADD ./Gemfile Gemfile
 
 RUN  eval "$(rbenv init -)"; gem update --system \
   &&  eval "$(rbenv init -)"; gem install bundler -f \
-  &&  eval "$(rbenv init -)"; bundle init \
   &&  eval "$(rbenv init -)"; bundle update \
-  && eval "$(rbenv init -)"; bundle install --path vendor/bundle\
-  &&  rm -rf /tmp/*
+  && eval "$(rbenv init -)"; bundle install
+
+
 
 ENTRYPOINT ["/bin/bash"]
