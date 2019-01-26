@@ -2,7 +2,6 @@ source "https://rubygems.org"
 
 gem 'rubocop'
 gem 'ruby-debug-ide'
-gem 'debase'
 gem 'rcodetools'
 gem 'fastri'
 
@@ -16,6 +15,7 @@ gem 'cloudinary'
 gem 'pry'
 group :development do
   gem 'sqlite3'
+  gem 'debase'
 end
 
 group :production do

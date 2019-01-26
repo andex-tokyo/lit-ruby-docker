@@ -44,7 +44,7 @@ WORKDIR /home/lit_users/workspace
 ADD ./Gemfile Gemfile
 
 RUN  eval "$(rbenv init -)"; gem update --system \
-  &&  eval "$(rbenv init -)"; gem install bundler -f \
+  &&  eval "$(rbenv init -)"; gem install bundler -v '1.17.1' -f \
   &&  eval "$(rbenv init -)"; bundle update \
   && eval "$(rbenv init -)"; bundle install
 
