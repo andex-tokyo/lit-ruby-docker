@@ -13,8 +13,9 @@ gem 'sinatra-activerecord'
 gem 'nokogiri'
 gem 'cloudinary'
 gem 'pry'
+gem 'dotenv'
 group :development do
-  gem 'sqlite3'
+  gem 'sqlite3', '~>1.3.13'
   gem 'debase'
 end
 
